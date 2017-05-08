@@ -1,0 +1,47 @@
+﻿@model ContactInfo.Models.Summary
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Summary</h2>
+<br/>
+
+<table class="table">    
+    <tr>
+        <th>
+        Address Type
+        </th>
+    <th>
+        Count
+    </th>
+    </tr>
+    @foreach (var item in Model.ContactsPerAddressTypeList)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count)
+            </td>
+        </tr>
+        }
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfContacts)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.NumberOfContacts)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfComputers)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.NumberOfComputers)
+        </td>
+    </tr>
+</table>

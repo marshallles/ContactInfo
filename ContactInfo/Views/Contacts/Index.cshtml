@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ContactInfo.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contacts</h2>
+
+@using (Html.BeginForm("Index", "Contacts", FormMethod.Get))
+{
+    //the following are search options
+    <b> Search Option: </b>
+    @Html.RadioButton("option", "FirstName")<text>First Name</text>
+    @Html.RadioButton("option", "LastName")<text>Last Name</text>
+    @Html.TextBox("search")
+    <input type = "submit"  name = "submit" value = "Search" />
+} 
+<br/>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfComputers)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfComputers)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ContactID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ContactID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ContactID }, new { onclick = "return confirm('Are you sure you wish to delete this contact?');" }) 
+        </td>
+    </tr>
+}
+
+</table>
